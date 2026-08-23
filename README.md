@@ -1,18 +1,94 @@
-# Ruthvik Chary's Portfolio
 
-A personal portfolio built to showcase AI-assisted development projects and my frontend engineering skills.
+# Personal Portfolio Website
 
-## Week 7 Frontend AI Engineering Assignment
-**"Your First 3D Experience on the Web"**
+## Overview
 
-### What was built
-Added an interactive 3D developer workspace directly into the existing vanilla HTML portfolio. The scene features a desk setup with a laptop and a customizable object, built using Three.js. Users can toggle auto-rotation and interactively change the color of a specific object in the scene. A fallback experience is provided for users with reduced motion preferences.
+This project is my personal portfolio website, created to showcase my skills, projects, certifications, education, experience, and contact information in an interactive and visually engaging way.
 
-### Performance Note
-The 3D canvas is lazy-loaded using the `IntersectionObserver` API. This ensures that the heavy 3D rendering engine and scripts are only executed and rendered when the user scrolls the 3D section into view, keeping the initial page load fast and mobile-friendly. Only lightweight geometric primitives are used to minimize resource usage.
+The portfolio is designed for recruiters, employers, reviewers, and anyone who wants to learn more about my technical background and projects.
 
-### Future Improvements
-With more time, I would:
-- Import optimized glTF models (like a detailed room or character) instead of using primitive geometries.
-- Bake lighting and shadows in Blender to significantly improve visual realism without the runtime performance cost of real-time lighting.
-- Add more interactive elements like clicking on the laptop screen to open a project link.
+## Live Website
+
+🌐 **Portfolio:**  
+https://rachakondaruthvikchary.github.io/rachakondaruthvikchary.github.io-/
+
+## Features
+
+- Interactive 3D-style portfolio experience
+- Personal introduction and About section
+- Technical skills section
+- Project showcase
+- Certifications section
+- Education details
+- Experience section
+- Contact form
+- Responsive web design
+- Smooth navigation between sections
+- Modern visual design
+
+## Technologies Used
+
+- HTML5
+- CSS3
+- JavaScript
+- GitHub
+- GitHub Pages
+- AI-assisted development and design
+
+## Who Is This For?
+
+This portfolio is mainly designed for:
+
+- Recruiters
+- Internship opportunities
+- Employers
+- College faculty and reviewers
+- People interested in my projects and technical skills
+
+## Setup
+
+The website is a static web project and can be run without a backend server.
+
+### Option 1: Open directly
+
+1. Clone or download this repository.
+2. Open the project folder.
+3. Open the main `index.html` file in a web browser.
+
+### Option 2: Run with VS Code
+
+1. Clone the repository.
+2. Open the folder in Visual Studio Code.
+3. Open `index.html`.
+4. Use a local development server such as Live Server.
+5. Open the displayed local URL in a browser.
+
+## Usage
+
+Visitors can navigate through the portfolio to:
+
+1. Learn about me.
+2. View my technical skills.
+3. Explore my projects.
+4. View certifications.
+5. See my education and experience.
+6. Contact me through the contact section.
+
+## Simple Architecture
+
+```text
+                    Portfolio Website
+                           |
+             +-------------+-------------+
+             |             |             |
+          Content       Styling      Interaction
+             |             |             |
+          HTML           CSS        JavaScript
+             |             |             |
+             +-------------+-------------+
+                           |
+                     Web Browser
+                           |
+                     GitHub Pages
+                           |
+                     Live Portfolio
