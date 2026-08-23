@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruthvik Chary — Portfolio</title>
+  <meta name="description"
+    content="Portfolio of R. Ruthvik Chary showcasing projects, skills, certifications, and experience in AI and software development.">
+  <meta name="author" content="R. Ruthvik Chary">
+  <meta property="og:title" content="R. Ruthvik Chary — Portfolio">
+  <meta property="og:description"
+    content="Explore R. Ruthvik Chary's projects, skills, certifications, and experience in AI and software development.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0D12;
+      --surface: rgba(28, 30, 40, 0.6);
+      --surface-solid: #1C1E28;
+      --text-primary: #FFFFFF;
+      --text-secondary: #9499A6;
+      --text-muted: #5B6170;
+      --accent: #4F8BFF;
+      --accent-gradient: linear-gradient(90deg, #A770EF, #CF8BF3, #FDB99B);
+      --accent-soft: rgba(79, 139, 255, 0.15);
+      --border: rgba(255, 255, 255, 0.1);
+      --radius: 12px;
+      --max-w: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.65;
+      font-size: 16px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: var(--text-primary);
+    }
+
+    .wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 13, 18, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .nav-links a.active {
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 24px;
+    }
+
+    .dark-toggle {
+      background: var(--surface-solid);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    /* Hero / 3D Experience */
+    .hero-3d {
+      padding: 64px 0 32px;
+      text-align: center;
+    }
+
+    .hero-3d h1 {
+      font-size: 48px;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+
+    .hero-3d p {
+      color: var(--text-secondary);
+      font-size: 18px;
+    }
+
+    .workspace-wrapper {
+      position: relative;
+      width: 100%;
+      height: 600px;
+      margin: 32px auto;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    #canvas-container {
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+    }
+
+    .panel {
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      color: var(--text-primary);
+    }
+
+    .panel-left {
+      position: absolute;
+      left: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 220px;
+      z-index: 10;
+    }
+
+    .panel-right {
+      position: absolute;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 260px;
+      z-index: 10;
+    }
+
+    .panel-bottom {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 32px;
+      padding: 16px 48px;
+      z-index: 10;
+      border-radius: 32px;
+    }
+
+    .panel h3 {
+      font-size: 14px;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+    }
+
+    .control-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .control-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .color-picker {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .color-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+    
+    .color-btn.active {
+      border-color: #fff;
+    }
+
+    .material-picker {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .mat-btn {
+      flex: 1;
+      padding: 6px 0;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .mat-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+
+    .toggle-switch {
+      width: 36px;
+      height: 20px;
+      background: var(--accent);
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+    }
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      right: 2px;
+      top: 2px;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 50%;
+    }
+    .toggle-switch.off {
+      background: var(--border);
+    }
+    .toggle-switch.off::after {
+      right: auto;
+      left: 2px;
+    }
+
+    .stat-box {
+      text-align: center;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stat-val {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .stat-val.good { color: #4ADE80; }
+
+    .about-3d {
+      background: var(--surface-solid);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 32px;
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .about-3d h3 { margin-bottom: 8px; color: var(--accent); }
+    .about-3d p { color: var(--text-secondary); font-size: 14px; max-width: 600px; }
+
+    /* Other Sections Overrides for Dark Mode */
+    section { padding: 80px 0; border-top: 1px solid var(--border); }
+    .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent); margin-bottom: 16px; }
+    section h2 { font-size: 32px; margin-bottom: 32px; }
+    
+    .cert-card, .project-card {
+      background: var(--surface-solid);
+      border: 1px solid var(--border);
+    }
+    
+    .tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+    
+    table th { color: var(--text-secondary); border-bottom-color: var(--border); }
+    table td { border-bottom-color: var(--border); }
+    
+    .btn-primary { background: var(--accent); color: #fff; border:none; }
+    .btn-secondary { background: var(--surface-solid); color: var(--text-primary); border: 1px solid var(--border); }
+    
+    footer { border-top: 1px solid var(--border); }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="wrap">
+      <div class="nav-brand">RUTHVIK</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#workspace-3d" class="active">3D Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="dark-toggle">🌙✨</button>
+    </div>
+  </nav>
+
+  <header class="hero-3d wrap" id="workspace-3d">
+    <h1>Interactive 3D Experience</h1>
+    <p>Rotate, explore and customize the 3D workspace</p>
+    
+    <div class="workspace-wrapper">
+      <div id="canvas-container"></div>
+      
+      <!-- Left Panel -->
+      <div class="panel panel-left">
+        <h3>Scene Controls</h3>
+        <div class="control-item"><span>🖱️</span> Drag to Rotate</div>
+        <div class="control-item"><span>🖱️</span> Scroll to Zoom</div>
+        <div class="control-item"><span>👆</span> Click on Object</div>
+        <div class="control-item"><span>👆</span> Touch to Rotate</div>
+      </div>
+
+      <!-- Right Panel -->
+      <div class="panel panel-right">
+        <h3>Customize</h3>
+        <p style="font-size:12px;color:var(--text-secondary);margin-bottom:8px;">Color</p>
+        <div class="color-picker" id="color-picker">
+          <div class="color-btn active" style="background:#4F8BFF;" data-color="#4F8BFF"></div>
+          <div class="color-btn" style="background:#A770EF;" data-color="#A770EF"></div>
+          <div class="color-btn" style="background:#4ADE80;" data-color="#4ADE80"></div>
+          <div class="color-btn" style="background:#FDB99B;" data-color="#FDB99B"></div>
+          <div class="color-btn" style="background:#E5E7EB;" data-color="#E5E7EB"></div>
+        </div>
+        
+        <p style="font-size:12px;color:var(--text-secondary);margin-bottom:8px;">Material</p>
+        <div class="material-picker" id="material-picker">
+          <button class="mat-btn active" data-mat="matte">Matte</button>
+          <button class="mat-btn" data-mat="metal">Metal</button>
+          <button class="mat-btn" data-mat="glossy">Glossy</button>
+        </div>
+
+        <div class="toggle-row">
+          <span>Auto Rotate</span>
+          <div class="toggle-switch" id="toggle-rotate"></div>
+        </div>
+        <div class="toggle-row">
+          <span>Lights</span>
+          <div class="toggle-switch" id="toggle-lights"></div>
+        </div>
+      </div>
+
+      <!-- Bottom Panel -->
+      <div class="panel panel-bottom">
+        <div class="stat-box">
+          <div class="stat-label"><span>⬡</span> Triangles</div>
+          <div class="stat-val">~24k</div>
+        </div>
+        <div style="width:1px;background:var(--border);"></div>
+        <div class="stat-box">
+          <div class="stat-label"><span>⁘</span> FPS</div>
+          <div class="stat-val" id="fps-counter">60</div>
+        </div>
+        <div style="width:1px;background:var(--border);"></div>
+        <div class="stat-box">
+          <div class="stat-label"><span>⚡</span> Performance</div>
+          <div class="stat-val good">Optimized</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="about-3d">
+      <div>
+        <h3>About this 3D Experience</h3>
+        <p>This is a lightweight 3D workspace model built with Three.js. You can rotate, zoom and customize the scene in real-time. All assets are optimized for performance and mobile compatibility.</p>
+      </div>
+      <div>
+        <span style="font-size:32px;color:var(--border);">⬡</span>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="wrap about">
+      <div class="eyebrow">$ about</div>
+      <h2>About me</h2>
+      <p>I'm an AIML undergraduate at KG Reddy College of Engineering and Technology, focused on building real, working
+        software rather than just studying theory. My approach blends solid programming fundamentals with modern
+        AI-assisted development — using tools like GitHub Copilot and prompt engineering to design, build, and ship
+        functional projects faster.</p>
+      <p>I'm currently working as a Front End AI Engineer Intern at Flyrank AI, where I'm sharpening my technical
+        skills, learning how to communicate my work clearly, and building this very portfolio as part of that process.
+        My goal is to grow into a strong AI engineer.</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="eyebrow">$ skills</div>
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Language</h3>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Vibe coding &amp; AI tools</h3>
+          <div class="tag-row">
+            <span class="tag">Vibe coding</span>
+            <span class="tag">Prompt Engineering</span>
+            <span class="tag">GitHub Copilot</span>
+            <span class="tag">Power BI</span>
+            <span class="tag">Data Analysis</span>
+            <span class="tag">Git / GitHub</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Currently learning</h3>
+          <div class="tag-row">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--text-muted);margin-top:16px;">
+        Project tech stacks (React, Node.js, MongoDB, CNN, etc.) are listed under each project below — built using
+        AI-assisted development.</p>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="wrap">
+      <div class="eyebrow">$ certifications</div>
+      <h2>Certifications</h2>
+      <div class="cert-grid">
+        <div class="cert-card">
+          <h3>AI Fluency: Framework &amp; Foundations</h3>
+          <div class="cert-meta">Anthropic</div>
+        </div>
+        <div class="cert-card">
+          <h3>Claude with Google Vertex AI</h3>
+          <div class="cert-meta">Anthropic</div>
+        </div>
+        <div class="cert-card">
+          <h3>OCI 2025 Certified Generative AI Professional</h3>
+          <div class="cert-meta">Oracle · Oct 2025</div>
+        </div>
+        <div class="cert-card">
+          <h3>OCI 2025 Certified AI Foundations Associate</h3>
+          <div class="cert-meta">Oracle · Aug 2025</div>
+        </div>
+        <div class="cert-card">
+          <h3>Digital Skills: Artificial Intelligence — Accenture</h3>
+          <div class="cert-meta">FutureLearn · Jun 2026</div>
+        </div>
+        <div class="cert-card">
+          <h3>Tata – GenAI Powered Data Analytics Job Simulation</h3>
+          <div class="cert-meta">Forage · Jun 2026</div>
+        </div>
+        <div class="cert-card">
+          <h3>Deloitte Australia – Data Analytics Job Simulation</h3>
+          <div class="cert-meta">Forage · Apr 2026</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="eyebrow">$ projects</div>
+      <h2>Projects</h2>
+
+      <div class="project-card">
+        <div class="project-head">
+          <h3>PoultryGuardAI</h3>
+        </div>
+        <div class="project-tagline">Solo project · CNN + Isolation Forest</div>
+        <p>A poultry disease detection prototype built with AI-assisted development. Uses a CNN for image-based disease
+          classification and an Isolation Forest model to flag anomalous farm conditions as early outbreak signals.
+          Trained on a small sample dataset as a proof-of-concept.</p>
+        <div class="project-footer">
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">CNN</span>
+            <span class="tag">Isolation Forest</span>
+          </div>
+          <a href="https://github.com/rachakondaruthvikchary/Poultry-_Disease-Risk-Prediction" target="_blank"
+            rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-head">
+          <h3>Expense Tracker</h3>
+        </div>
+        <div class="project-tagline">Solo project · Full-stack web app</div>
+        <p>A full-stack expense management app with secure user authentication, expense logging, and spending analytics
+          with charts. Built with AI-assisted development — I guided the data model, auth flow, and dashboard design.
+        </p>
+        <div class="project-footer">
+          <div class="tag-row">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">MongoDB</span>
+          </div>
+          <a href="https://github.com/rachakondaruthvikchary/expense-tracker" target="_blank" rel="noopener">View on
+            GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-head">
+          <h3>Transformers</h3>
+        </div>
+        <div class="project-tagline">Hackathon team project · AI fitness platform</div>
+        <p>An AI-powered fitness platform built with a hackathon team, offering personalized workout plans, nutrition
+          guidance, and AI health coaching. Contributed across frontend, backend, and AI feature integration.</p>
+        <div class="project-footer">
+          <div class="tag-row">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Team project</span>
+          </div>
+          <a href="https://github.com/rachakondaruthvikchary/figure_out" target="_blank" rel="noopener">View on GitHub
+            →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="eyebrow">$ experience</div>
+      <h2>Experience</h2>
+      <div class="exp-item">
+        <h3>Front End AI Engineer Intern — Flyrank AI</h3>
+        <div class="exp-meta">Current</div>
+        <p>Building front-end interfaces and features using AI-assisted development tools, while strengthening core
+          programming fundamentals and professional communication.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <div class="eyebrow">$ education</div>
+      <h2>Education</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>Institution</th>
+            <th>Year</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="primary">B.Tech, CSE (AIML)</td>
+            <td>KG Reddy College of Engineering and Technology, JNTU Hyderabad</td>
+            <td>2027</td>
+            <td>7.0 GPA</td>
+          </tr>
+          <tr>
+            <td class="primary">Intermediate (MPC)</td>
+            <td>Sri Chaitanya Junior Kalasala</td>
+            <td>2023</td>
+            <td>602 / 1000</td>
+          </tr>
+          <tr>
+            <td class="primary">SSC</td>
+            <td>Ravindra Bharathi High School</td>
+            <td>2021</td>
+            <td>10.0 GPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="wrap">
+      <div class="eyebrow">$ contact</div>
+      <h2>Let's connect</h2>
+      <p>Open to internship opportunities, collaborations, and conversations about AI-assisted development. Reach out
+        anytime.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:ruthvikchary@gmail.com">Email me</a>
+        <a class="btn btn-secondary" href="https://github.com/rachakondaruthvikchary" target="_blank"
+          rel="noopener">GitHub</a>
+        <a class="btn btn-secondary" href="https://www.linkedin.com/in/ruthvik-chary" target="_blank"
+          rel="noopener">LinkedIn</a>
+      </div>
+      <div class="foot-note">Built by R. Ruthvik Chary — updated 2026</div>
+    </div>
+  </footer>
+
+  <script>
+    const phrases = ["whoami", "R. Ruthvik Chary — AIML student & AI-assisted developer"];
+    const el = document.getElementById('typed');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      el.textContent = phrases[1];
+    } else {
+      let full = phrases[0];
+      let i = 0;
+      function typeCmd() {
+        if (i <= full.length) {
+          el.textContent = full.slice(0, i);
+          i++;
+          setTimeout(typeCmd, 70);
+        } else {
+          setTimeout(typeOutput, 500);
+        }
+      }
+      function typeOutput() {
+        el.innerHTML = '';
+        const line = document.createElement('div');
+        line.style.marginTop = '6px';
+        line.style.color = 'var(--text-primary)';
+        el.parentElement.appendChild(line);
+        let out = phrases[1];
+        let j = 0;
+        function step() {
+          if (j <= out.length) {
+            line.textContent = out.slice(0, j);
+            j++;
+            setTimeout(step, 25);
+          }
+        }
+        step();
+      }
+      typeCmd();
+    }
+  </script>
+
+</body>
+
+<!-- Import maps polyfill -->
+<script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+
+<script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+</script>
+
+<script type="module">
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+  const container = document.getElementById('canvas-container');
+  const fallback = document.getElementById('fallback-3d');
+  const fallbackText = fallback.querySelector('p');
+  const btnLoad = document.getElementById('btn-load-3d');
+  const controlsDiv = document.getElementById('controls-3d');
+  const btnColor = document.getElementById('btn-color');
+  const btnRotate = document.getElementById('btn-rotate');
+
+  let scene, camera, renderer, controls;
+  let scene, camera, renderer, controls;
+  let isInitialized = false;
+  let autoRotate = true;
+  let lightsEnabled = true;
+  let mugMaterial;
+  let deskMat, lapMat;
+  let mainLight, ambientLight, neonLight1, neonLight2;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) autoRotate = false;
+
+  function init3D() {
+    if (isInitialized) return;
+
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color('#0B0D12');
+
+    camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+    camera.position.set(5, 5, 5);
+
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    container.appendChild(renderer.domElement);
+
+    controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.autoRotate = autoRotate;
+    controls.autoRotateSpeed = 1.0;
+    controls.enablePan = false;
+    controls.minDistance = 2;
+    controls.maxDistance = 10;
+
+    // Lighting
+    ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+    scene.add(ambientLight);
+
+    mainLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    mainLight.position.set(5, 10, 5);
+    mainLight.castShadow = true;
+    mainLight.shadow.mapSize.width = 1024;
+    mainLight.shadow.mapSize.height = 1024;
+    scene.add(mainLight);
+
+    neonLight1 = new THREE.PointLight(0x4F8BFF, 2, 10);
+    neonLight1.position.set(-2, 1, -1);
+    scene.add(neonLight1);
+
+    neonLight2 = new THREE.PointLight(0xA770EF, 2, 10);
+    neonLight2.position.set(2, 1, 1);
+    scene.add(neonLight2);
+
+    // Desk
+    const deskGeo = new THREE.BoxGeometry(4, 0.2, 2.5);
+    deskMat = new THREE.MeshStandardMaterial({ color: '#16181D', roughness: 0.9, metalness: 0.1 });
+    const desk = new THREE.Mesh(deskGeo, deskMat);
+    desk.position.y = -0.1;
+    desk.receiveShadow = true;
+    scene.add(desk);
+
+    // Laptop Base
+    const lapBaseGeo = new THREE.BoxGeometry(1.2, 0.05, 0.8);
+    lapMat = new THREE.MeshStandardMaterial({ color: '#2A2D3A', metalness: 0.7, roughness: 0.3 });
+    const lapBase = new THREE.Mesh(lapBaseGeo, lapMat);
+    lapBase.position.set(0, 0.025, 0);
+    lapBase.castShadow = true;
+    scene.add(lapBase);
+
+    // Laptop Screen
+    const lapScreenGeo = new THREE.BoxGeometry(1.2, 0.8, 0.05);
+    const lapScreen = new THREE.Mesh(lapScreenGeo, lapMat);
+    lapScreen.position.set(0, 0.425, -0.4);
+    lapScreen.rotation.x = -Math.PI / 12;
+    lapScreen.castShadow = true;
+    scene.add(lapScreen);
+
+    // Screen Display (Glowing)
+    const displayGeo = new THREE.PlaneGeometry(1.1, 0.7);
+    const displayMat = new THREE.MeshBasicMaterial({ color: '#4F8BFF' });
+    const display = new THREE.Mesh(displayGeo, displayMat);
+    display.position.set(0, 0, 0.026);
+    lapScreen.add(display);
+
+    // Coffee Mug
+    const mugGeo = new THREE.CylinderGeometry(0.15, 0.15, 0.3, 32);
+    mugMaterial = new THREE.MeshStandardMaterial({ color: '#4F8BFF', roughness: 0.8, metalness: 0.1 });
+    const mug = new THREE.Mesh(mugGeo, mugMaterial);
+    mug.position.set(1, 0.15, 0.3);
+    mug.castShadow = true;
+    scene.add(mug);
+
+    // Mug Handle
+    const handleGeo = new THREE.TorusGeometry(0.1, 0.03, 16, 32);
+    const handle = new THREE.Mesh(handleGeo, mugMaterial);
+    handle.position.set(0.15, 0, 0);
+    handle.rotation.z = Math.PI / 2;
+    mug.add(handle);
+
+    isInitialized = true;
+    animate();
+    
+    // Setup UI Listeners
+    setupUI();
+  }
+
+  function setupUI() {
+    // Colors
+    document.querySelectorAll('.color-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        if (mugMaterial) mugMaterial.color.set(e.target.dataset.color);
+      });
+    });
+
+    // Materials
+    document.querySelectorAll('.mat-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.mat-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        const matType = e.target.dataset.mat;
+        if (!mugMaterial || !deskMat) return;
+        
+        if (matType === 'matte') {
+          mugMaterial.roughness = 0.8; mugMaterial.metalness = 0.1;
+          deskMat.roughness = 0.9; deskMat.metalness = 0.1;
+        } else if (matType === 'metal') {
+          mugMaterial.roughness = 0.3; mugMaterial.metalness = 0.8;
+          deskMat.roughness = 0.4; deskMat.metalness = 0.7;
+        } else if (matType === 'glossy') {
+          mugMaterial.roughness = 0.1; mugMaterial.metalness = 0.2;
+          deskMat.roughness = 0.1; deskMat.metalness = 0.1;
+        }
+      });
+    });
+
+    // Toggles
+    const toggleRotate = document.getElementById('toggle-rotate');
+    if (reduceMotion) {
+      toggleRotate.classList.add('off');
+    }
+    toggleRotate.addEventListener('click', () => {
+      toggleRotate.classList.toggle('off');
+      autoRotate = !toggleRotate.classList.contains('off');
+      if (controls) controls.autoRotate = autoRotate;
+    });
+
+    const toggleLights = document.getElementById('toggle-lights');
+    toggleLights.addEventListener('click', () => {
+      toggleLights.classList.toggle('off');
+      lightsEnabled = !toggleLights.classList.contains('off');
+      if (neonLight1 && neonLight2) {
+        neonLight1.intensity = lightsEnabled ? 2 : 0;
+        neonLight2.intensity = lightsEnabled ? 2 : 0;
+      }
+    });
+  }
+
+  let frames = 0;
+  let lastTime = performance.now();
+  const fpsCounter = document.getElementById('fps-counter');
+
+  function animate() {
+    requestAnimationFrame(animate);
+    if (controls) controls.update();
+    if (renderer && camera) renderer.render(scene, camera);
+    
+    frames++;
+    const now = performance.now();
+    if (now - lastTime >= 1000) {
+      if(fpsCounter) fpsCounter.innerText = frames;
+      frames = 0;
+      lastTime = now;
+    }
+  }
+
+  window.addEventListener('resize', () => {
+    if (!isInitialized) return;
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        init3D();
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+
+  observer.observe(container);
+
+</script>
+
+</html>
