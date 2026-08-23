@@ -4,7 +4,7 @@
 
 This project is my personal portfolio website, created to showcase my skills, projects, certifications, education, experience, and contact information in an interactive and visually engaging way.
 
-The portfolio is designed for recruiters, employers, reviewers, and anyone who wants to learn more about my technical background and projects.
+The portfolio is designed for recruiters, employers, internship opportunities, reviewers, college faculty, and anyone interested in my technical background and projects.
 
 ## Live Website
 
@@ -24,12 +24,16 @@ https://rachakondaruthvikchary.github.io/rachakondaruthvikchary.github.io-/
 - Responsive web design
 - Smooth navigation between sections
 - Modern visual design
+- Fullscreen interactive GLSL shader hero
+- Mouse-responsive visual effects
+- Reduced-motion support
 
 ## Technologies Used
 
 - HTML5
 - CSS3
 - JavaScript
+- WebGL / GLSL
 - GitHub
 - GitHub Pages
 - AI-assisted development and design
@@ -48,7 +52,7 @@ This portfolio is mainly designed for:
 
 The website is a static web project and can be run without a backend server.
 
-### Option 1: Open directly
+### Option 1: Open Directly
 
 1. Clone or download this repository.
 2. Open the project folder.
@@ -86,9 +90,8 @@ Visitors can navigate through the portfolio to:
              |             |             |
              +-------------+-------------+
                            |
-                     Web Browser
+                    Web Browser
                            |
                      GitHub Pages
                            |
-                     Live Portfolio
                      Live Portfolio
